@@ -19,16 +19,9 @@ namespace UserProvider
         [Function("GetUsers")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req)
         {
-            try
-            {
                 var users = await _context.Users.ToListAsync();
                 return new OkObjectResult(users);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-            }
-            return new BadRequestResult();
+           
         }
     }
 
